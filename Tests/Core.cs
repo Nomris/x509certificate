@@ -48,7 +48,7 @@ namespace Tests
 
             X509Certificate2 retrivedCer = _store.Get(cer.SerialNumber, true);
 
-            Assert.That(retrivedCer.GetRSAPrivateKey().ExportRSAPrivateKey().SequenceEqual(rsa.ExportRSAPrivateKey()));
+            Assert.That(retrivedCer.GetRSAPrivateKey().ExportRSAPrivateKey().SequenceEqual(rsa.ExportRSAPrivateKey()) && retrivedCer.GetRSAPublicKey().ExportRSAPublicKey().SequenceEqual(rsa.ExportRSAPublicKey()));
         }
 
         [Test]
@@ -63,7 +63,7 @@ namespace Tests
 
             X509Certificate2 retrivedCer = _store.Get(cer.SerialNumber);
 
-            Assert.That(retrivedCer.GetRSAPublicKey().ExportRSAPublicKey().SequenceEqual(rsa.ExportRSAPublicKey()));
+            Assert.That(retrivedCer.GetRSAPublicKey().ExportRSAPublicKey().SequenceEqual(rsa.ExportRSAPublicKey()) && !retrivedCer.HasPrivateKey);
         }
     }
 }
