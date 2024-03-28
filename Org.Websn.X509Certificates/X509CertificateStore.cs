@@ -27,7 +27,11 @@ namespace Org.Websn.X509Certificates
 
         public X509Certificate2 Get(string name, bool includePrivateKey = false)
         {
+#if NET5_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(name, nameof(name));
+#else
+            if (string.IsNullOrEmpty(name)) throw new ArgumentNullException(nameof(name));
+#endif
 
             string basePath = Path.Combine(_directory, name);
 
