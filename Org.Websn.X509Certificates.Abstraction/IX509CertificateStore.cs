@@ -9,10 +9,10 @@ namespace Org.Websn.X509Certificates.Abstraction
 {
     public interface IX509CertificateStore
     {
-        public string Name { get; }
+        string Name { get; }
 
-        public X509Certificate2 Get(string name, bool includePrivateKey = false);
+        X509Certificate2 Get(string name, bool includePrivateKey = false);
 
-        public void Store(string name, X509Certificate2 certificate, bool includePrivateKey = true);
+        void Store(string name, X509Certificate2 certificate, bool includePrivateKey = true);
     }
 }
