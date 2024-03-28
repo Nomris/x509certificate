@@ -36,7 +36,7 @@ namespace Org.Websn.X509Certificates
             X509Certificate2 cert = new X509Certificate2(Convert.FromBase64String(File.ReadAllText(basePath + ".cer")));
             if (!includePrivateKey) return cert;
 
-            if (!File.Exists(basePath + ".key")) throw new KeyNotFoundException("Faild to find Certificate-Key with name: " + name);
+            if (!File.Exists(basePath + ".key")) return cert;
 
             RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
             rsa.ImportRSAPrivateKey(Convert.FromBase64String(File.ReadAllText(basePath + ".key")), out _);
